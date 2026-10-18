@@ -33,7 +33,13 @@ function ToastView({ item, onClose }: { item: ToastItem; onClose: (id: number) =
 }
 
 // アプリ全体を包む。どこからでも useToast() で、お知らせを出せるようになる
-export function ToastProvider({ children }: { children: ReactNode }) {
+export type ToastProviderProps = {
+  children: ReactNode
+  /** 同時に出しておく数の上限。超えたら、いちばん古いものから消える。初期値は 3 */
+  max?: number
+}
+
+export function ToastProvider({ children, max = 3 }: ToastProviderProps) {
   const [items, setItems] = useState<ToastItem[]>([])
   const nextId = useRef(0)
 
@@ -41,9 +47,10 @@ export function ToastProvider({ children }: { children: ReactNode }) {
   const api = useMemo<ToastApi>(() => ({
     show: (message, { variant = 'neutral', duration = 5000 } = {}) => {
       const id = nextId.current++
-      setItems((list) => [...list, { id, message, variant, duration }])
+      // 上限を超えた分は、古いほうから外す（画面が、お知らせでうまらないように）
+      setItems((list) => [...list, { id, message, variant, duration }].slice(-max))
     },
-  }), [])
+  }), [max])
 
   return (
     <ToastContext.Provider value={api}>

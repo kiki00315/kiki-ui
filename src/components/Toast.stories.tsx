@@ -45,3 +45,21 @@ export const ErrorIsAlert: Story = {
     await expect(await canvas.findByRole('alert')).toHaveTextContent('送信に失敗しました')
   },
 }
+
+// 上限（max）を超えると、古いものから消える
+function Burst() {
+  const toast = useToast()
+  return <Button variant="secondary" onClick={() => { for (let i = 1; i <= 5; i++) toast.show(`お知らせ ${i}`) }}>5 つ出す</Button>
+}
+
+export const Limit: Story = {
+  args: { max: 3, children: <Burst /> },
+  // 5 つ出しても、見えているのは新しい 3 つだけ
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement)
+    await userEvent.click(canvas.getByRole('button', { name: '5 つ出す' }))
+    await waitFor(() => expect(canvas.getAllByRole('status')).toHaveLength(3))
+    const texts = canvas.getAllByRole('status').map((t) => t.textContent?.replace('×', ''))
+    await expect(texts).toEqual(['お知らせ 3', 'お知らせ 4', 'お知らせ 5'])
+  },
+}

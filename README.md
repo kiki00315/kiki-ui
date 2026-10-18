@@ -24,7 +24,7 @@ KIKI ポートフォリオのデザインを「デザイントークン」と「
 | `src/components/Card.tsx` | Works ページの作品カードと同じ形（絵・種類・名前・「見る」） |
 | `src/components/TextField.tsx` | label・ヒント・エラーを入力欄に結びつける（`aria-describedby` / `aria-invalid`） |
 | `src/components/Select.tsx` | ブラウザ標準の `<select>`。label・ヒント・エラーの付け方は TextField と同じ |
-| `src/components/Toast.tsx` | `<ToastProvider>` で包み、`useToast().show('保存しました', { variant: 'success' })` で出す。マウス・フォーカス中は消えない。エラーは `role="alert"` |
+| `src/components/Toast.tsx` | `<ToastProvider>` で包み、`useToast().show('保存しました', { variant: 'success' })` で出す。`max` を超えたら、古いものから消える。マウス・フォーカス中は消えない。エラーは `role="alert"` |
 | `src/components/Tabs.tsx` | ← → Home End で動く、WAI-ARIA のタブ。開いているタブにだけ Tab で止まる |
 | `src/components/Checkbox.tsx` | 標準の checkbox。名前を押しても切り替わる。`indeterminate`（一部だけ選ばれている）に対応 |
 | `src/components/RadioGroup.tsx` | `<fieldset>` + `<legend>` でまとめたラジオ。↑↓ キーでの移動は標準のまま |
@@ -46,8 +46,9 @@ KIKI ポートフォリオのデザインを「デザイントークン」と「
 | `src/components/Stepper.tsx` | 手順の「いまここ」を見せる `<ol>`。`aria-current="step"` + 状態の読み上げ文字。せまい画面では縦に並ぶ |
 | `src/components/TagInput.tsx` | Enter・`,`・`、` でタグにする。**日本語の変換中の Enter ではタグにしない**。Backspace で最後を消す。追加・削除を読み上げる |
 | `src/components/Popover.tsx` | ボタンの近くに出る小さなパネル。開くとフォーカスが移り、Esc でボタンに戻る。外を押す・Tab で出ると閉じる |
+| `src/components/Calendar.tsx` | WAI-ARIA の日付の表（grid）。← → ↑ ↓ Home End・PageUp / PageDown（Shift で年）・Enter で選ぶ。`min` / `max`、今日の目印 |
 | `src/components/Badge.tsx` | `variant`: neutral / success / warning / error。色と文字の組み合わせは 4.5:1 以上 |
-| `src/components/Tooltip.tsx` | マウスを乗せる・フォーカスで出る、Esc で消せる。`aria-describedby` で読み上げにも対応 |
+| `src/components/Tooltip.tsx` | マウスを乗せる・フォーカスで出る、Esc で消せる。`aria-describedby` で読み上げにも対応。画面のはしでは、反対側に出す・横にずらす |
 | `src/components/Modal.tsx` | HTML 標準の `<dialog>` を使う。フォーカスの閉じ込め・Esc で閉じる・閉じたあとフォーカスを戻す、をブラウザに任せる |
 | `src/tokens.stories.tsx` `spacing.stories.tsx` `typography.stories.tsx` `radius.stories.tsx` `shadow.stories.tsx` | 色・余白・文字サイズ・角丸・影のトークン一覧（値は CSS 変数から読むので、`tokens.css` を変えると自動で変わる） |
 | `src/components/*.stories.tsx` | Storybook の見本。ほとんどのコンポーネントに、操作のテスト（キーボード操作・読み上げ用の属性）も入れている |
@@ -68,4 +69,4 @@ npm run build-storybook  # カタログを storybook-static/ に書き出す（m
 
 ## これから足すもの（予定）
 
-Tooltip の自動配置、Calendar、Toast の積み上げ上限 など
+DatePicker と Calendar の組み合わせ、期間の選択、Toast のふるまいの設定 など
