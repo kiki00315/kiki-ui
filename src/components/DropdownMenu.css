@@ -1,0 +1,89 @@
+.kk-menu {
+  position: relative;
+  display: inline-block;
+  /* 横並び（flex）の中に置かれても、縦に引きのばされない。引きのばされると、メニューがボタンから離れてしまう */
+  align-self: flex-start;
+  font-family: var(--font-main);
+}
+
+.kk-menu__trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 12px var(--space-4);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-pill);
+  background: var(--color-white);
+  font: inherit;
+  font-size: var(--font-size-md);
+  color: var(--color-ink);
+  cursor: pointer;
+}
+
+.kk-menu__trigger:focus-visible {
+  outline: 2px solid var(--color-ink);
+  outline-offset: 3px;
+}
+
+/* ボタンの右の ▾。開いているときは上向きになる */
+.kk-menu__caret {
+  width: 7px;
+  height: 7px;
+  border-right: 1.5px solid currentColor;
+  border-bottom: 1.5px solid currentColor;
+  rotate: 45deg;
+  translate: 0 -2px;
+  transition: rotate var(--transition);
+}
+
+.kk-menu__trigger[aria-expanded='true'] .kk-menu__caret {
+  rotate: 225deg;
+  translate: 0 2px;
+}
+
+.kk-menu__list {
+  position: absolute;
+  top: calc(100% + var(--space-1));
+  z-index: 10;
+  display: grid;
+  min-width: 100%;
+  padding: var(--space-1) 0;
+  border: 1px solid var(--color-line);
+  background: var(--color-white);
+  box-shadow: var(--shadow-lift);
+}
+
+.kk-menu__list--start { left: 0; }
+.kk-menu__list--end { right: 0; }
+
+.kk-menu__item {
+  padding: 10px var(--space-4);
+  border: 0;
+  background: transparent;
+  font: inherit;
+  font-size: var(--font-size-md);
+  text-align: left;
+  white-space: nowrap;
+  color: var(--color-ink);
+  cursor: pointer;
+}
+
+/* フォーカスと、マウスを乗せたときは、同じ見た目にする */
+.kk-menu__item:hover:not(:disabled),
+.kk-menu__item:focus-visible {
+  background: var(--color-neutral-bg);
+  outline: none;
+}
+
+.kk-menu__item:focus-visible {
+  box-shadow: inset 3px 0 0 var(--color-ink);
+}
+
+.kk-menu__item--danger {
+  color: var(--color-error);
+}
+
+.kk-menu__item:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
