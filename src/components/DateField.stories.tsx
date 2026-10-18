@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import type { Meta, StoryObj } from '@storybook/react-vite'
-import { expect, fn, userEvent, waitFor, within } from 'storybook/test'
+import { expect, fireEvent, fn, userEvent, waitFor, within } from 'storybook/test'
 import { Button } from './Button'
 import { DateField } from './DateField'
 import { parseDate } from './dateText'
@@ -148,5 +148,19 @@ export const NoRepeatedChange: Story = {
     await userEvent.click(input)
     await userEvent.tab()
     await expect(onChange).not.toHaveBeenCalled()
+  },
+}
+
+export const ComposingEnter: Story = {
+  // 日本語の変換を確定する Enter（Chrome は isComposing が true、Safari は keyCode が 229）では、日付を確定しない
+  play: async ({ canvasElement }) => {
+    onChange.mockClear()
+    const input = within(canvasElement).getByRole('textbox', { name: 'ご希望の日' })
+    await userEvent.type(input, '2026/10/20')
+    fireEvent.keyDown(input, { key: 'Enter', isComposing: true })
+    fireEvent.keyDown(input, { key: 'Enter', keyCode: 229 })
+    await expect(onChange).not.toHaveBeenCalled()
+    await userEvent.keyboard('{Enter}')
+    await expect(onChange).toHaveBeenLastCalledWith('2026-10-20')
   },
 }

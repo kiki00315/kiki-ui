@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
-import { expect, fn, userEvent, waitFor, within } from 'storybook/test'
+import { expect, fireEvent, fn, userEvent, waitFor, within } from 'storybook/test'
 import { Combobox } from './Combobox'
 
 const onChange = fn()
@@ -67,3 +67,20 @@ export const WithError: Story = {
   },
 }
 export const Disabled: Story = { args: { disabled: true } }
+
+export const ComposingKeys: Story = {
+  // 日本語の変換中の ↓ や Enter は、変換候補を選ぶためのもの。入力欄の候補の移動や決定には使わない
+  play: async ({ canvasElement }) => {
+    onChange.mockClear()
+    const canvas = within(canvasElement)
+    const input = canvas.getByRole('combobox', { name: '作品の種類' })
+    await userEvent.type(input, 'ウェブ')
+    fireEvent.keyDown(input, { key: 'ArrowDown', isComposing: true })
+    fireEvent.keyDown(input, { key: 'Enter', keyCode: 229 })
+    await expect(input).not.toHaveAttribute('aria-activedescendant')
+    await expect(onChange).not.toHaveBeenCalled()
+    // 変換が終われば、ふつうに ↓ と Enter で選べる
+    await userEvent.keyboard('{ArrowDown}{Enter}')
+    await expect(onChange).toHaveBeenCalledTimes(1)
+  },
+}

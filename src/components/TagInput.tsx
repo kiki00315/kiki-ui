@@ -1,5 +1,6 @@
 import { useId, useState } from 'react'
 import type { KeyboardEvent } from 'react'
+import { isComposingKey } from './ime'
 import './TextField.css'
 import './TagInput.css'
 
@@ -63,8 +64,8 @@ export function TagInput({ label, value, defaultValue = [], onChange, placeholde
   }
 
   const onKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
-    // 日本語の入力で、変換を確定する Enter では、タグを追加しない（isComposing が true の間は、変換の途中）
-    if (e.nativeEvent.isComposing) return
+    // 日本語の入力で、変換を確定する Enter では、タグを追加しない（Chrome は isComposing、Safari は keyCode 229 で見分ける）
+    if (isComposingKey(e)) return
     if (e.key === 'Enter' || SEPARATORS.includes(e.key)) {
       // Enter は、フォームの送信を止めて、タグにする。文字が空なら、何もしない（送信もそのまま）
       if (text.trim()) { e.preventDefault(); add(text) }

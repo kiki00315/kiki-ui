@@ -1,5 +1,6 @@
 import { useId, useRef, useState } from 'react'
 import type { KeyboardEvent } from 'react'
+import { isComposingKey } from './ime'
 import './TextField.css'
 import './Combobox.css'
 
@@ -77,6 +78,8 @@ export function Combobox({ label, options, value, defaultValue, onChange, placeh
   }
 
   const onKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
+    // 日本語の変換中の ↑↓ Enter Esc は、変換のための操作。候補の移動や決定に使わない
+    if (isComposingKey(e)) return
     if (e.key === 'ArrowDown') { e.preventDefault(); if (!open) setOpen(true); move(1) }
     else if (e.key === 'ArrowUp') { e.preventDefault(); if (!open) setOpen(true); move(-1) }
     else if (e.key === 'Enter') {
