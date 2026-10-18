@@ -2,6 +2,7 @@ import { useEffect, useId, useRef, useState } from 'react'
 import type { KeyboardEvent } from 'react'
 import { Calendar } from './Calendar'
 import { formatDate, parseDate } from './dateText'
+import { isComposingKey } from './ime'
 import './TextField.css'
 import './DateField.css'
 
@@ -89,7 +90,7 @@ export function DateField({ label, value, defaultValue, onChange, min, max, toda
 
   const onInputKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
     // 日本語の変換を確定する Enter では、日付の確定をしない
-    if (e.key === 'Enter' && !e.nativeEvent.isComposing) { e.preventDefault(); confirmText() }
+    if (e.key === 'Enter' && !isComposingKey(e)) { e.preventDefault(); confirmText() }
   }
 
   const onWrapKeyDown = (e: KeyboardEvent<HTMLDivElement>) => {

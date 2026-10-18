@@ -85,3 +85,18 @@ export const WithError: Story = {
     await expect(input).toHaveAccessibleDescription('タグを 1 つ以上入れてください')
   },
 }
+
+export const ComposingSafari: Story = {
+  // Safari では、変換を確定する Enter の keydown が、変換の終わり（compositionend）のあとに来て、
+  // isComposing が false になる。かわりに keyCode が 229 になるので、それでもタグにならないことを確かめる
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement)
+    const input = canvas.getByRole('textbox', { name: 'タグ' }) as HTMLInputElement
+    await userEvent.type(input, 'にほんご')
+    fireEvent.keyDown(input, { key: 'Enter', keyCode: 229, isComposing: false })
+    await expect(tagsOf(canvasElement)).toEqual([])
+    await expect(input).toHaveValue('にほんご')
+    await userEvent.keyboard('{Enter}')
+    await expect(tagsOf(canvasElement)).toEqual(['にほんご'])
+  },
+}
