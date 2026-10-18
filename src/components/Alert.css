@@ -1,0 +1,72 @@
+/* 画面には出さず、スクリーンリーダーにだけ読ませる文字（Alert と Avatar で使う） */
+.kk-visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.kk-alert {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-3) var(--space-3) var(--space-4);
+  border: 1px solid var(--color-line);
+  border-left-width: 4px;
+  background: var(--color-white);
+  font-family: var(--font-main);
+  font-size: var(--font-size-md);
+  line-height: 1.7;
+  color: var(--color-ink);
+}
+
+.kk-alert--success {
+  border-color: var(--color-success-text);
+  background: var(--color-success-bg);
+  color: var(--color-success-text);
+}
+
+.kk-alert--warning {
+  border-color: var(--color-warning-text);
+  background: var(--color-warning-bg);
+  color: var(--color-warning-text);
+}
+
+.kk-alert--error {
+  border-color: var(--color-error);
+  background: var(--color-error-bg);
+  color: var(--color-error);
+}
+
+.kk-alert__body {
+  position: relative;
+  flex: 1;
+}
+
+.kk-alert__title {
+  margin: 0;
+  font-size: var(--font-size-lg);
+}
+
+.kk-alert__text {
+  margin: 0;
+}
+
+.kk-alert__close {
+  flex: none;
+  width: 32px;
+  height: 32px;
+  margin: -4px 0;
+  border: 0;
+  background: transparent;
+  font-size: 20px;
+  color: inherit;
+  cursor: pointer;
+}
+
+.kk-alert__close:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: -2px;
+}

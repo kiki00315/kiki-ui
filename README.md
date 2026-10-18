@@ -34,6 +34,9 @@ KIKI ポートフォリオのデザインを「デザイントークン」と「
 | `src/components/Breadcrumb.tsx` | `<nav>` + `<ol>`。いまいるページは `aria-current="page"` でリンクにしない。区切りは線で描く |
 | `src/components/Skeleton.tsx` | 読み込み中の場所取り（text / rect / circle）。`aria-hidden`、動きを減らす設定では光を止める |
 | `src/components/Progress.tsx` | 標準の `<progress>`。値がないときは「どれくらいかわからない」動きになる |
+| `src/components/Alert.tsx` | ページの中に置く動かないお知らせ。`variant` ごとに色 + 読み上げ用の文字。失敗・注意は `role="alert"` |
+| `src/components/Avatar.tsx` | 画像、読み込めないとき・画像なしのときは頭文字。`name` で読み上げる |
+| `src/components/DropdownMenu.tsx` | WAI-ARIA のメニューボタン。↑↓ Home End・Esc で閉じてボタンに戻る・Tab で閉じる |
 | `src/components/Badge.tsx` | `variant`: neutral / success / warning / error。色と文字の組み合わせは 4.5:1 以上 |
 | `src/components/Tooltip.tsx` | マウスを乗せる・フォーカスで出る、Esc で消せる。`aria-describedby` で読み上げにも対応 |
 | `src/components/Modal.tsx` | HTML 標準の `<dialog>` を使う。フォーカスの閉じ込め・Esc で閉じる・閉じたあとフォーカスを戻す、をブラウザに任せる |
@@ -56,4 +59,4 @@ npm run build-storybook  # カタログを storybook-static/ に書き出す（m
 
 ## これから足すもの（予定）
 
-Dropdown メニュー、Avatar、Alert など
+Combobox（検索つきの選択）、Dialog の確認ボタン、DatePicker など

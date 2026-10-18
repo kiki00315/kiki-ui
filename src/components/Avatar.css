@@ -1,0 +1,22 @@
+.kk-avatar {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--color-neutral-bg);
+  font-family: var(--font-main);
+  color: var(--color-ink);
+  object-fit: cover;
+  overflow: hidden;
+  user-select: none;
+}
+
+.kk-avatar--sm { width: 32px; height: 32px; font-size: var(--font-size-sm); }
+.kk-avatar--md { width: 48px; height: 48px; font-size: var(--font-size-md); }
+.kk-avatar--lg { width: 72px; height: 72px; font-size: var(--font-size-lg); }
+
+/* 頭文字のときの背景色（文字と背景の組み合わせは、4.5:1 以上） */
+.kk-avatar--success { background: var(--color-success-bg); color: var(--color-success-text); }
+.kk-avatar--warning { background: var(--color-warning-bg); color: var(--color-warning-text); }
+.kk-avatar--error { background: var(--color-error-bg); color: var(--color-error); }
