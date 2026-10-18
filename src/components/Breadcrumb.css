@@ -1,0 +1,45 @@
+.kk-breadcrumb {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-family: var(--font-main);
+  font-size: var(--font-size-sm);
+}
+
+.kk-breadcrumb__item {
+  display: inline-flex;
+  align-items: center;
+}
+
+/* 項目のあいだの区切り（›）。記号の文字だと読み上げられてしまうので、線で描く */
+.kk-breadcrumb__item + .kk-breadcrumb__item::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  margin: 0 var(--space-2);
+  border-top: 1.5px solid var(--color-gray-text);
+  border-right: 1.5px solid var(--color-gray-text);
+  rotate: 45deg;
+}
+
+.kk-breadcrumb__link {
+  color: var(--color-gray-text);
+  text-decoration: underline;
+  text-underline-offset: 0.3em;
+}
+
+.kk-breadcrumb__link:hover {
+  color: var(--color-ink);
+}
+
+.kk-breadcrumb__link:focus-visible {
+  outline: 2px solid var(--color-ink);
+  outline-offset: 2px;
+}
+
+.kk-breadcrumb__current {
+  color: var(--color-ink);
+}

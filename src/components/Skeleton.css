@@ -1,0 +1,39 @@
+.kk-skeleton {
+  display: block;
+  background: linear-gradient(90deg, var(--color-neutral-bg) 25%, var(--color-white) 50%, var(--color-neutral-bg) 75%);
+  background-size: 200% 100%;
+  animation: kk-skeleton-shimmer 1.4s linear infinite;
+}
+
+.kk-skeleton--text {
+  height: 1em;
+  border-radius: var(--radius-sm);
+}
+
+.kk-skeleton--rect {
+  min-height: 1em;
+  border-radius: var(--radius-sm);
+}
+
+.kk-skeleton--circle {
+  border-radius: 50%;
+}
+
+.kk-skeleton-lines {
+  display: grid;
+  gap: var(--space-2);
+  font-size: var(--font-size-md);
+}
+
+@keyframes kk-skeleton-shimmer {
+  from { background-position: 200% 0; }
+  to { background-position: -200% 0; }
+}
+
+/* 動きを減らす設定の人には、光の流れを止める */
+@media (prefers-reduced-motion: reduce) {
+  .kk-skeleton {
+    animation: none;
+    background: var(--color-neutral-bg);
+  }
+}

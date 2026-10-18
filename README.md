@@ -31,6 +31,9 @@ KIKI ポートフォリオのデザインを「デザイントークン」と「
 | `src/components/Switch.tsx` | `role="switch"` の checkbox。Space で切り替わり、オン・オフが読み上げられる |
 | `src/components/Accordion.tsx` | 見出しの中のボタン + `aria-expanded`。`multiple` で複数同時に開ける |
 | `src/components/Pagination.tsx` | `<nav>` + `aria-current="page"`。ページが多いときは「…」で省く |
+| `src/components/Breadcrumb.tsx` | `<nav>` + `<ol>`。いまいるページは `aria-current="page"` でリンクにしない。区切りは線で描く |
+| `src/components/Skeleton.tsx` | 読み込み中の場所取り（text / rect / circle）。`aria-hidden`、動きを減らす設定では光を止める |
+| `src/components/Progress.tsx` | 標準の `<progress>`。値がないときは「どれくらいかわからない」動きになる |
 | `src/components/Badge.tsx` | `variant`: neutral / success / warning / error。色と文字の組み合わせは 4.5:1 以上 |
 | `src/components/Tooltip.tsx` | マウスを乗せる・フォーカスで出る、Esc で消せる。`aria-describedby` で読み上げにも対応 |
 | `src/components/Modal.tsx` | HTML 標準の `<dialog>` を使う。フォーカスの閉じ込め・Esc で閉じる・閉じたあとフォーカスを戻す、をブラウザに任せる |
@@ -53,4 +56,4 @@ npm run build-storybook  # カタログを storybook-static/ に書き出す（m
 
 ## これから足すもの（予定）
 
-Breadcrumb、Skeleton、Progress など
+Dropdown メニュー、Avatar、Alert など
