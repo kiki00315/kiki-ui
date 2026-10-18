@@ -1,0 +1,34 @@
+/* ==========================================================
+   デザイントークン（KIKI ポートフォリオの css/style.css から写した値）
+   色・文字・余白・角・影を、ここ 1 か所で決める。
+   コンポーネントは、色や余白の数字を直接書かず、必ずこの変数を使う
+   ========================================================== */
+:root {
+  /* 色 */
+  --color-bg: #FAF9F6;          /* ページの紙の色 */
+  --color-white: #FFFFFF;       /* カードの白 */
+  --color-ink: #3B3B3B;         /* 本文の文字 */
+  --color-title: #484848;       /* 見出し */
+  --color-gray: #898989;        /* ロゴ・大きい見出し（大きい文字用） */
+  --color-gray-text: #717171;   /* 小さい文字（背景とのコントラスト 4.5:1 以上） */
+  --color-line: #DCD8D0;        /* 線 */
+
+  /* 文字 */
+  --font-main: "Shirokuma", "Hiragino Maru Gothic ProN", "Zen Maru Gothic", sans-serif;
+  --font-read: "Hiragino Maru Gothic ProN", "Zen Maru Gothic", sans-serif; /* 長い文章用 */
+  --font-size-sm: 13px;
+  --font-size-md: 16px;
+  --font-size-lg: 20px;
+
+  /* 余白（8px の倍数を基本にする） */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 16px;
+  --space-4: 24px;
+  --space-5: 38px;              /* 作品カードの白いフチ */
+
+  /* 角・影・動き */
+  --radius-pill: 999px;
+  --shadow-lift: 0 12px 32px rgba(0, 0, 0, 0.08);
+  --transition: 0.2s;
+}
