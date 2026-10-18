@@ -20,7 +20,9 @@ KIKI ポートフォリオのデザインを「デザイントークン」と「
 | `src/tokens.css` | 色・文字・余白・角・影のトークン |
 | `src/components/Button.tsx` | `variant`: primary / secondary / ghost、`size`: sm / md |
 | `src/components/Card.tsx` | Works ページの作品カードと同じ形（絵・種類・名前・「見る」） |
-| `src/*.stories.tsx` | Storybook の見本 |
+| `src/components/TextField.tsx` | label・ヒント・エラーを入力欄に結びつける（`aria-describedby` / `aria-invalid`） |
+| `src/components/Modal.tsx` | HTML 標準の `<dialog>` を使う。フォーカスの閉じ込め・Esc で閉じる・閉じたあとフォーカスを戻す、をブラウザに任せる |
+| `src/*.stories.tsx` | Storybook の見本。TextField と Modal には操作のテストも入れている |
 
 ## 動かす
 
@@ -28,6 +30,7 @@ KIKI ポートフォリオのデザインを「デザイントークン」と「
 npm install
 npm run storybook        # http://localhost:6006 でカタログを見る
 npm run build            # 型のチェックとビルド
+npx vitest run           # Storybook の操作テスト（Chromium で動かす）
 npm run build-storybook  # カタログを storybook-static/ に書き出す
 ```
 
@@ -37,4 +40,4 @@ npm run build-storybook  # カタログを storybook-static/ に書き出す
 
 ## これから足すもの（予定）
 
-TextField、Modal（フォーカスの閉じ込め・Esc で閉じる）、Badge、スペーシングや文字サイズのトークン一覧ページ
+Badge、Tooltip、スペーシングや文字サイズのトークン一覧ページ

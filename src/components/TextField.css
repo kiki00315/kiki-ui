@@ -1,0 +1,49 @@
+.kk-field {
+  display: grid;
+  gap: var(--space-1);
+  font-family: var(--font-main);
+  color: var(--color-ink);
+}
+
+.kk-field__label {
+  font-size: var(--font-size-sm);
+  letter-spacing: 0.08em;
+}
+
+.kk-field__input {
+  padding: 12px var(--space-3);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-sm);
+  background: var(--color-white);
+  font: inherit;
+  font-size: var(--font-size-md);
+  color: inherit;
+}
+
+.kk-field__input:focus-visible {
+  outline: 2px solid var(--color-ink);
+  outline-offset: 2px;
+}
+
+.kk-field__input:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.kk-field__hint,
+.kk-field__error {
+  margin: 0;
+  font-size: var(--font-size-sm);
+}
+
+.kk-field__hint {
+  color: var(--color-gray-text);
+}
+
+.kk-field__error {
+  color: var(--color-error);
+}
+
+.kk-field--error .kk-field__input {
+  border-color: var(--color-error);
+}

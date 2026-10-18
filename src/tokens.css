@@ -12,6 +12,8 @@
   --color-gray: #898989;        /* ロゴ・大きい見出し（大きい文字用） */
   --color-gray-text: #717171;   /* 小さい文字（背景とのコントラスト 4.5:1 以上） */
   --color-line: #DCD8D0;        /* 線 */
+  --color-error: #B3261E;       /* エラー（白い背景で 4.5:1 以上） */
+  --color-overlay: rgba(59, 59, 59, 0.45); /* モーダルの後ろの暗幕 */
 
   /* 文字 */
   --font-main: "Shirokuma", "Hiragino Maru Gothic ProN", "Zen Maru Gothic", sans-serif;
@@ -29,6 +31,7 @@
 
   /* 角・影・動き */
   --radius-pill: 999px;
+  --radius-sm: 4px;
   --shadow-lift: 0 12px 32px rgba(0, 0, 0, 0.08);
   --transition: 0.2s;
 }

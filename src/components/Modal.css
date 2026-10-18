@@ -1,0 +1,49 @@
+.kk-modal {
+  /* dialog はもともと画面の真ん中に出る。余白と枠だけ整える */
+  max-width: min(520px, calc(100vw - 32px));
+  padding: 0;
+  border: 0;
+  background: transparent;
+  font-family: var(--font-main);
+  color: var(--color-ink);
+}
+
+.kk-modal::backdrop {
+  background: var(--color-overlay);
+}
+
+.kk-modal__panel {
+  position: relative;
+  padding: var(--space-5);
+  background: var(--color-white);
+}
+
+.kk-modal__title {
+  margin: 0 0 var(--space-3);
+  font-size: var(--font-size-lg);
+  font-weight: 400;
+  color: var(--color-title);
+}
+
+.kk-modal__body {
+  font-size: var(--font-size-md);
+  line-height: 1.8;
+}
+
+.kk-modal__close {
+  position: absolute;
+  top: var(--space-2);
+  right: var(--space-2);
+  width: 44px;
+  height: 44px;
+  border: 0;
+  background: transparent;
+  font-size: 24px;
+  color: var(--color-gray-text);
+  cursor: pointer;
+}
+
+.kk-modal__close:focus-visible {
+  outline: 2px solid var(--color-ink);
+  outline-offset: -4px;
+}
