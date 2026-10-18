@@ -1,0 +1,36 @@
+.kk-tooltip {
+  position: relative;
+  display: inline-flex;
+}
+
+.kk-tooltip__bubble {
+  position: absolute;
+  left: 50%;
+  z-index: 10;
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--radius-sm);
+  background: var(--color-ink);
+  color: var(--color-white);
+  font-family: var(--font-main);
+  font-size: var(--font-size-sm);
+  line-height: 1.5;
+  white-space: nowrap;
+  translate: -50% 0;
+  /* 隠すときは visibility を使う（display:none にすると読み上げからも消えてしまう） */
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity var(--transition);
+}
+
+.kk-tooltip__bubble--top {
+  bottom: calc(100% + var(--space-2));
+}
+
+.kk-tooltip__bubble--bottom {
+  top: calc(100% + var(--space-2));
+}
+
+.kk-tooltip__bubble[data-visible='true'] {
+  visibility: visible;
+  opacity: 1;
+}

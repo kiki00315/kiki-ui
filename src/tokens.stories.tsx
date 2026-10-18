@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
 // 色のトークン一覧。値は tokens.css の変数をそのまま使うので、tokens.css を変えるとここも変わる
-const colors = ['bg', 'white', 'ink', 'title', 'gray', 'gray-text', 'line']
+const colors = ['bg', 'white', 'ink', 'title', 'gray', 'gray-text', 'line', 'error', 'error-bg', 'success-text', 'success-bg', 'warning-text', 'warning-bg', 'neutral-bg']
 
 function Colors() {
   return (

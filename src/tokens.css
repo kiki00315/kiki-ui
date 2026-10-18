@@ -13,6 +13,13 @@
   --color-gray-text: #717171;   /* 小さい文字（背景とのコントラスト 4.5:1 以上） */
   --color-line: #DCD8D0;        /* 線 */
   --color-error: #B3261E;       /* エラー（白い背景で 4.5:1 以上） */
+  /* 状態の色。文字色（-text）と背景（-bg）は、組み合わせて 4.5:1 以上になるよう確かめてある */
+  --color-neutral-bg: #EFEDE8;
+  --color-success-text: #2E6B3A;
+  --color-success-bg: #E6F1E7;
+  --color-warning-text: #7A4F00;
+  --color-warning-bg: #FBF0DC;
+  --color-error-bg: #FBE9E7;
   --color-overlay: rgba(59, 59, 59, 0.45); /* モーダルの後ろの暗幕 */
 
   /* 文字 */
