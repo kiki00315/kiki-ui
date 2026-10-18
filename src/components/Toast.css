@@ -1,14 +1,17 @@
 /* 画面の右下に、お知らせを積み重ねる */
 .kk-toast-region {
   position: fixed;
-  right: var(--space-4);
-  bottom: var(--space-4);
   z-index: 20;
   display: grid;
   gap: var(--space-2);
   max-width: min(360px, calc(100vw - 32px));
   pointer-events: none; /* 領域そのものは、後ろの操作をじゃましない */
 }
+
+.kk-toast-region--bottom-end { right: var(--space-4); bottom: var(--space-4); }
+.kk-toast-region--bottom-start { bottom: var(--space-4); left: var(--space-4); }
+.kk-toast-region--top-end { top: var(--space-4); right: var(--space-4); }
+.kk-toast-region--top-start { top: var(--space-4); left: var(--space-4); }
 
 .kk-toast {
   display: flex;

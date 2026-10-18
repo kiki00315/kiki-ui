@@ -63,3 +63,44 @@ export const Limit: Story = {
     await expect(texts).toEqual(['お知らせ 3', 'お知らせ 4', 'お知らせ 5'])
   },
 }
+
+// 場所・消えない・消す、の見本
+function Options() {
+  const toast = useToast()
+  return (
+    <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+      <Button variant="secondary" onClick={() => toast.show('すぐ消えます', { duration: 80 })}>すぐ消える</Button>
+      <Button variant="secondary" onClick={() => toast.show('閉じるまで残ります', { variant: 'error', duration: 0 })}>消えない</Button>
+      <Button variant="secondary" onClick={() => toast.clear()}>全部消す</Button>
+    </div>
+  )
+}
+
+export const Sticky: Story = {
+  args: { children: <Options /> },
+  // duration が短いお知らせは自動で消え、0 のお知らせは残る／「全部消す」で、残っていたものも消える
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement)
+    await userEvent.click(canvas.getByRole('button', { name: 'すぐ消える' }))
+    await userEvent.click(canvas.getByRole('button', { name: '消えない' }))
+    await waitFor(() => expect(canvas.queryByText('すぐ消えます')).not.toBeInTheDocument())
+    await expect(canvas.getByRole('alert')).toHaveTextContent('閉じるまで残ります')
+    await new Promise((r) => setTimeout(r, 300))
+    await expect(canvas.getByRole('alert')).toBeInTheDocument()
+    await userEvent.click(canvas.getByRole('button', { name: '全部消す' }))
+    await waitFor(() => expect(canvas.queryByRole('alert')).not.toBeInTheDocument())
+  },
+}
+
+export const TopStart: Story = {
+  args: { position: 'top-start', children: <Burst /> },
+  // 出す場所を、左上にできる
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement)
+    await userEvent.click(canvas.getByRole('button', { name: '5 つ出す' }))
+    await waitFor(() => expect(canvasElement.querySelector('.kk-toast-region--top-start')).not.toBeNull())
+    const r = canvasElement.querySelector('.kk-toast-region')!.getBoundingClientRect()
+    await expect(r.top).toBeLessThan(window.innerHeight / 2)
+    await expect(r.left).toBeLessThan(window.innerWidth / 2)
+  },
+}

@@ -11,7 +11,8 @@ function ToastView({ item, onClose }: { item: ToastItem; onClose: (id: number) =
   const [paused, setPaused] = useState(false)
 
   useEffect(() => {
-    if (paused) return
+    // duration が 0 のお知らせは、自動では消さない
+    if (paused || item.duration <= 0) return
     const timer = setTimeout(() => onClose(item.id), item.duration)
     return () => clearTimeout(timer)
   }, [paused, item.id, item.duration, onClose])
@@ -33,13 +34,17 @@ function ToastView({ item, onClose }: { item: ToastItem; onClose: (id: number) =
 }
 
 // アプリ全体を包む。どこからでも useToast() で、お知らせを出せるようになる
+export type ToastPosition = 'bottom-end' | 'bottom-start' | 'top-end' | 'top-start'
+
 export type ToastProviderProps = {
   children: ReactNode
   /** 同時に出しておく数の上限。超えたら、いちばん古いものから消える。初期値は 3 */
   max?: number
+  /** お知らせを出す場所（画面の四隅）。初期値は右下（bottom-end）。ほかの部品のじゃまにならない隅を選ぶ */
+  position?: ToastPosition
 }
 
-export function ToastProvider({ children, max = 3 }: ToastProviderProps) {
+export function ToastProvider({ children, max = 3, position = 'bottom-end' }: ToastProviderProps) {
   const [items, setItems] = useState<ToastItem[]>([])
   const nextId = useRef(0)
 
@@ -49,13 +54,16 @@ export function ToastProvider({ children, max = 3 }: ToastProviderProps) {
       const id = nextId.current++
       // 上限を超えた分は、古いほうから外す（画面が、お知らせでうまらないように）
       setItems((list) => [...list, { id, message, variant, duration }].slice(-max))
+      return id
     },
-  }), [max])
+    dismiss: close,
+    clear: () => setItems([]),
+  }), [max, close])
 
   return (
     <ToastContext.Provider value={api}>
       {children}
-      <div className="kk-toast-region">
+      <div className={`kk-toast-region kk-toast-region--${position}`}>
         {items.map((t) => <ToastView key={t.id} item={t} onClose={close} />)}
       </div>
     </ToastContext.Provider>

@@ -24,7 +24,7 @@ KIKI ポートフォリオのデザインを「デザイントークン」と「
 | `src/components/Card.tsx` | Works ページの作品カードと同じ形（絵・種類・名前・「見る」） |
 | `src/components/TextField.tsx` | label・ヒント・エラーを入力欄に結びつける（`aria-describedby` / `aria-invalid`） |
 | `src/components/Select.tsx` | ブラウザ標準の `<select>`。label・ヒント・エラーの付け方は TextField と同じ |
-| `src/components/Toast.tsx` | `<ToastProvider>` で包み、`useToast().show('保存しました', { variant: 'success' })` で出す。`max` を超えたら、古いものから消える。マウス・フォーカス中は消えない。エラーは `role="alert"` |
+| `src/components/Toast.tsx` | `<ToastProvider>` で包み、`useToast().show('保存しました', { variant: 'success' })` で出す。`max` を超えたら、古いものから消える。`position` で四隅のどこに出すかを選べ、`duration: 0` で閉じるまで残し、`clear()` で全部消せる。マウス・フォーカス中は消えない。エラーは `role="alert"` |
 | `src/components/Tabs.tsx` | ← → Home End で動く、WAI-ARIA のタブ。開いているタブにだけ Tab で止まる |
 | `src/components/Checkbox.tsx` | 標準の checkbox。名前を押しても切り替わる。`indeterminate`（一部だけ選ばれている）に対応 |
 | `src/components/RadioGroup.tsx` | `<fieldset>` + `<legend>` でまとめたラジオ。↑↓ キーでの移動は標準のまま |
@@ -47,6 +47,7 @@ KIKI ポートフォリオのデザインを「デザイントークン」と「
 | `src/components/TagInput.tsx` | Enter・`,`・`、` でタグにする。**日本語の変換中の Enter ではタグにしない**。Backspace で最後を消す。追加・削除を読み上げる |
 | `src/components/Popover.tsx` | ボタンの近くに出る小さなパネル。開くとフォーカスが移り、Esc でボタンに戻る。外を押す・Tab で出ると閉じる |
 | `src/components/Calendar.tsx` | WAI-ARIA の日付の表（grid）。← → ↑ ↓ Home End・PageUp / PageDown（Shift で年）・Enter で選ぶ。`min` / `max`、今日の目印 |
+| `src/components/DateField.tsx` | 打っても選んでもよい日付の欄。`2026/10/20`・全角の数字・「年月日」・区切りなしを読み、右のボタンで Calendar を開く。範囲の外・ない日付（2/30）はエラー |
 | `src/components/Badge.tsx` | `variant`: neutral / success / warning / error。色と文字の組み合わせは 4.5:1 以上 |
 | `src/components/Tooltip.tsx` | マウスを乗せる・フォーカスで出る、Esc で消せる。`aria-describedby` で読み上げにも対応。画面のはしでは、反対側に出す・横にずらす |
 | `src/components/Modal.tsx` | HTML 標準の `<dialog>` を使う。フォーカスの閉じ込め・Esc で閉じる・閉じたあとフォーカスを戻す、をブラウザに任せる |
@@ -69,4 +70,4 @@ npm run build-storybook  # カタログを storybook-static/ に書き出す（m
 
 ## これから足すもの（予定）
 
-DatePicker と Calendar の組み合わせ、期間の選択、Toast のふるまいの設定 など
+期間（開始〜終了）の選択、Calendar の週のはじまりの設定、DateField の時刻つき版 など
