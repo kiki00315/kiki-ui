@@ -15,7 +15,8 @@
   font-size: var(--font-size-sm);
   line-height: 1.5;
   white-space: nowrap;
-  translate: -50% 0;
+  /* 画面のはしで、はみ出さないよう、横にずらす分（Tooltip.tsx が測って入れる） */
+  translate: calc(-50% + var(--kk-tip-shift, 0px)) 0;
   /* 隠すときは visibility を使う（display:none にすると読み上げからも消えてしまう） */
   visibility: hidden;
   opacity: 0;

@@ -1,0 +1,97 @@
+.kk-calendar {
+  display: inline-block;
+  padding: var(--space-3);
+  border: 1px solid var(--color-line);
+  background: var(--color-white);
+  font-family: var(--font-main);
+  color: var(--color-ink);
+}
+
+.kk-calendar__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-2);
+}
+
+.kk-calendar__title {
+  margin: 0;
+  font-size: var(--font-size-md);
+  font-weight: 400;
+  letter-spacing: 0.08em;
+}
+
+.kk-calendar__nav {
+  width: 40px;
+  height: 40px;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  font-size: 20px;
+  color: var(--color-ink);
+  cursor: pointer;
+}
+
+.kk-calendar__nav:hover:not(:disabled) {
+  background: var(--color-neutral-bg);
+}
+
+.kk-calendar__nav:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.kk-calendar__nav:focus-visible,
+.kk-calendar__day:focus-visible {
+  outline: 2px solid var(--color-ink);
+  outline-offset: 2px;
+}
+
+.kk-calendar__grid {
+  border-collapse: collapse;
+}
+
+.kk-calendar__dow {
+  padding: var(--space-1) 0;
+  font-size: var(--font-size-sm);
+  font-weight: 400;
+  color: var(--color-gray-text);
+}
+
+.kk-calendar__cell,
+.kk-calendar__blank {
+  padding: 2px;
+  text-align: center;
+}
+
+.kk-calendar__day {
+  width: 40px;
+  height: 40px;
+  border: 1px solid transparent;
+  border-radius: 50%;
+  background: transparent;
+  font: inherit;
+  font-size: var(--font-size-md);
+  color: inherit;
+  cursor: pointer;
+}
+
+.kk-calendar__day:hover:not(:disabled) {
+  background: var(--color-neutral-bg);
+}
+
+/* 今日：枠で示す（色だけに頼らない） */
+.kk-calendar__day--today {
+  border-color: var(--color-ink);
+}
+
+/* 選ばれた日：塗りつぶす */
+.kk-calendar__cell[aria-selected='true'] .kk-calendar__day {
+  background: var(--color-ink);
+  color: var(--color-white);
+}
+
+.kk-calendar__day:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}

@@ -31,3 +31,33 @@ export const Top: Story = {
   },
 }
 export const Bottom: Story = { args: { placement: 'bottom' } }
+
+export const FlipsAtTopEdge: Story = {
+  // 画面の上のはしにあるボタンでは、上に出したくても、入りきらないので下に出る
+  decorators: [(Story) => <div style={{ position: 'fixed', top: 0, left: 120 }}><Story /></div>],
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement)
+    await userEvent.hover(canvas.getByRole('button', { name: 'コピー' }))
+    await waitFor(() => expect(canvas.getByRole('tooltip')).toHaveAttribute('data-placement', 'bottom'))
+  },
+}
+
+export const ShiftsAtLeftEdge: Story = {
+  // 画面の左のはしでは、はみ出さないよう、横にずれる（左が 8px より外に出ない）
+  decorators: [(Story) => <div style={{ position: 'fixed', top: 80, left: 0 }}><Story /></div>],
+  args: { content: 'ここは、画面の左のはしに近い場所です' },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement)
+    await userEvent.hover(canvas.getByRole('button', { name: 'コピー' }))
+    await waitFor(() => expect(canvas.getByRole('tooltip').getBoundingClientRect().left).toBeGreaterThanOrEqual(7))
+  },
+}
+
+export const StaysAtTopWhenThereIsRoom: Story = {
+  // 十分な広さがあるときは、そのまま上に出る
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement)
+    await userEvent.hover(canvas.getByRole('button', { name: 'コピー' }))
+    await waitFor(() => expect(canvas.getByRole('tooltip')).toHaveAttribute('data-placement', 'top'))
+  },
+}
