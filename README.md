@@ -26,11 +26,16 @@ KIKI ポートフォリオのデザインを「デザイントークン」と「
 | `src/components/Select.tsx` | ブラウザ標準の `<select>`。label・ヒント・エラーの付け方は TextField と同じ |
 | `src/components/Toast.tsx` | `<ToastProvider>` で包み、`useToast().show('保存しました', { variant: 'success' })` で出す。マウス・フォーカス中は消えない。エラーは `role="alert"` |
 | `src/components/Tabs.tsx` | ← → Home End で動く、WAI-ARIA のタブ。開いているタブにだけ Tab で止まる |
+| `src/components/Checkbox.tsx` | 標準の checkbox。名前を押しても切り替わる。`indeterminate`（一部だけ選ばれている）に対応 |
+| `src/components/RadioGroup.tsx` | `<fieldset>` + `<legend>` でまとめたラジオ。↑↓ キーでの移動は標準のまま |
+| `src/components/Switch.tsx` | `role="switch"` の checkbox。Space で切り替わり、オン・オフが読み上げられる |
+| `src/components/Accordion.tsx` | 見出しの中のボタン + `aria-expanded`。`multiple` で複数同時に開ける |
+| `src/components/Pagination.tsx` | `<nav>` + `aria-current="page"`。ページが多いときは「…」で省く |
 | `src/components/Badge.tsx` | `variant`: neutral / success / warning / error。色と文字の組み合わせは 4.5:1 以上 |
 | `src/components/Tooltip.tsx` | マウスを乗せる・フォーカスで出る、Esc で消せる。`aria-describedby` で読み上げにも対応 |
 | `src/components/Modal.tsx` | HTML 標準の `<dialog>` を使う。フォーカスの閉じ込め・Esc で閉じる・閉じたあとフォーカスを戻す、をブラウザに任せる |
 | `src/tokens.stories.tsx` `spacing.stories.tsx` `typography.stories.tsx` `radius.stories.tsx` `shadow.stories.tsx` | 色・余白・文字サイズ・角丸・影のトークン一覧（値は CSS 変数から読むので、`tokens.css` を変えると自動で変わる） |
-| `src/components/*.stories.tsx` | Storybook の見本。TextField・Select・Modal・Tooltip・Toast・Tabs には操作のテストも入れている |
+| `src/components/*.stories.tsx` | Storybook の見本。ほとんどのコンポーネントに、操作のテスト（キーボード操作・読み上げ用の属性）も入れている |
 
 ## 動かす
 
@@ -48,4 +53,4 @@ npm run build-storybook  # カタログを storybook-static/ に書き出す（m
 
 ## これから足すもの（予定）
 
-Radio・Checkbox・Switch、Accordion、Pagination など
+Breadcrumb、Skeleton、Progress など

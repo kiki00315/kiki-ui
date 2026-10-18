@@ -1,0 +1,66 @@
+.kk-accordion {
+  border-top: 1px solid var(--color-line);
+  font-family: var(--font-main);
+  color: var(--color-ink);
+}
+
+.kk-accordion__item {
+  border-bottom: 1px solid var(--color-line);
+}
+
+.kk-accordion__heading {
+  margin: 0;
+  font-weight: 400;
+}
+
+.kk-accordion__button {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  width: 100%;
+  padding: var(--space-3) var(--space-1);
+  border: 0;
+  background: transparent;
+  font: inherit;
+  font-size: var(--font-size-md);
+  text-align: left;
+  color: inherit;
+  cursor: pointer;
+}
+
+.kk-accordion__button:focus-visible {
+  outline: 2px solid var(--color-ink);
+  outline-offset: -2px;
+}
+
+/* 右の「＋ / −」。しろくまフォントに記号がないので、線で描く */
+.kk-accordion__icon {
+  position: relative;
+  flex: none;
+  width: 14px;
+  height: 14px;
+}
+
+.kk-accordion__icon::before,
+.kk-accordion__icon::after {
+  content: '';
+  position: absolute;
+  inset: 50% 0 auto;
+  height: 1.5px;
+  background: var(--color-gray-text);
+  transition: rotate var(--transition);
+}
+
+.kk-accordion__icon::after {
+  rotate: 90deg;
+}
+
+.kk-accordion__button[aria-expanded='true'] .kk-accordion__icon::after {
+  rotate: 0deg;
+}
+
+.kk-accordion__panel {
+  padding: 0 var(--space-1) var(--space-3);
+  line-height: 1.8;
+}

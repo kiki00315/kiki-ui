@@ -1,0 +1,50 @@
+.kk-pagination {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-1);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-family: var(--font-main);
+}
+
+.kk-pagination__button {
+  min-width: 40px;
+  height: 40px;
+  padding: 0 var(--space-2);
+  border: 1px solid transparent;
+  border-radius: var(--radius-pill);
+  background: transparent;
+  font: inherit;
+  font-size: var(--font-size-md);
+  color: var(--color-ink);
+  cursor: pointer;
+}
+
+.kk-pagination__button:hover:not(:disabled):not([aria-current]) {
+  background: var(--color-neutral-bg);
+}
+
+.kk-pagination__button[aria-current='page'] {
+  background: var(--color-ink);
+  color: var(--color-white);
+  cursor: default;
+}
+
+.kk-pagination__button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.kk-pagination__button:focus-visible {
+  outline: 2px solid var(--color-ink);
+  outline-offset: 2px;
+}
+
+.kk-pagination__gap {
+  display: inline-block;
+  min-width: 24px;
+  text-align: center;
+  color: var(--color-gray-text);
+}
