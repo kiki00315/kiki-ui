@@ -1,0 +1,107 @@
+/* チェックボックス・ラジオ・スイッチの共通部分。1 行 = 「入力 + 名前」 */
+.kk-choice {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-family: var(--font-main);
+  font-size: var(--font-size-md);
+  color: var(--color-ink);
+  cursor: pointer;
+}
+
+.kk-choice--disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* 入力そのもの（ブラウザ標準の input を、見た目だけ整える） */
+.kk-choice__input {
+  box-sizing: border-box;
+  flex: none;
+  width: 22px;
+  height: 22px;
+  margin: 0;
+  border: 1.5px solid var(--color-gray-text);
+  background: var(--color-white);
+  appearance: none;
+  cursor: inherit;
+}
+
+.kk-choice__input:focus-visible {
+  outline: 2px solid var(--color-ink);
+  outline-offset: 3px;
+}
+
+/* チェックボックス：四角。チェックは線で描く */
+.kk-choice__input[type='checkbox']:not([role='switch']) {
+  border-radius: var(--radius-sm);
+}
+
+.kk-choice__input[type='checkbox']:not([role='switch']):checked,
+.kk-choice__input[type='checkbox']:not([role='switch']):indeterminate {
+  border-color: var(--color-ink);
+  background: var(--color-ink);
+}
+
+/* チェックの印（✓）は、白い線を回転させて描く。一部だけ選ばれている状態は、白い横線 */
+.kk-choice__input[type='checkbox']:not([role='switch']):checked::after {
+  content: '';
+  display: block;
+  width: 5px;
+  height: 10px;
+  margin: 2px 0 0 6px;
+  border: solid var(--color-white);
+  border-width: 0 2px 2px 0;
+  rotate: 45deg;
+}
+
+.kk-choice__input[type='checkbox']:not([role='switch']):indeterminate::after {
+  content: '';
+  display: block;
+  width: 10px;
+  height: 2px;
+  margin: 8px 0 0 4px;
+  background: var(--color-white);
+}
+
+/* ラジオ：丸。選ばれたら、中に点 */
+.kk-choice__input[type='radio'] {
+  border-radius: 50%;
+}
+
+.kk-choice__input[type='radio']:checked {
+  border-color: var(--color-ink);
+  background: radial-gradient(circle, var(--color-ink) 0 5px, var(--color-white) 6px);
+}
+
+/* スイッチ：横長の丸。つまみが右に動く */
+.kk-choice__input[role='switch'] {
+  width: 44px;
+  height: 24px;
+  border-radius: var(--radius-pill);
+  background: var(--color-line);
+  /* オフのときも、枠が背景からはっきり見えるように（枠と背景の差は 3:1 以上にする） */
+  border-color: var(--color-gray-text);
+  transition: background var(--transition);
+}
+
+.kk-choice__input[role='switch']::before {
+  content: '';
+  display: block;
+  width: 18px;
+  height: 18px;
+  margin: 3px;
+  border-radius: 50%;
+  background: var(--color-white);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+  transition: translate var(--transition);
+}
+
+.kk-choice__input[role='switch']:checked {
+  background: var(--color-ink);
+  border-color: var(--color-ink);
+}
+
+.kk-choice__input[role='switch']:checked::before {
+  translate: 20px 0;
+}
