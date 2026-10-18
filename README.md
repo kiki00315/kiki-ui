@@ -37,6 +37,9 @@ KIKI ポートフォリオのデザインを「デザイントークン」と「
 | `src/components/Alert.tsx` | ページの中に置く動かないお知らせ。`variant` ごとに色 + 読み上げ用の文字。失敗・注意は `role="alert"` |
 | `src/components/Avatar.tsx` | 画像、読み込めないとき・画像なしのときは頭文字。`name` で読み上げる |
 | `src/components/DropdownMenu.tsx` | WAI-ARIA のメニューボタン。↑↓ Home End・Esc で閉じてボタンに戻る・Tab で閉じる |
+| `src/components/Combobox.tsx` | WAI-ARIA のコンボボックス。文字で候補を絞る、↑↓ で選ぶ（フォーカスは入力欄のまま）、Enter で決める、Esc で閉じて元の文字に戻す |
+| `src/components/ConfirmDialog.tsx` | Modal の上の「実行しますか？」。取り消せない操作（`danger`）では、最初のフォーカスが「キャンセル」に行く |
+| `src/components/DatePicker.tsx` | 標準の `<input type="date">` を土台にする（自作のカレンダーは作らない）。`min` / `max` の範囲の外は、エラーを自動で出す |
 | `src/components/Badge.tsx` | `variant`: neutral / success / warning / error。色と文字の組み合わせは 4.5:1 以上 |
 | `src/components/Tooltip.tsx` | マウスを乗せる・フォーカスで出る、Esc で消せる。`aria-describedby` で読み上げにも対応 |
 | `src/components/Modal.tsx` | HTML 標準の `<dialog>` を使う。フォーカスの閉じ込め・Esc で閉じる・閉じたあとフォーカスを戻す、をブラウザに任せる |
@@ -59,4 +62,4 @@ npm run build-storybook  # カタログを storybook-static/ に書き出す（m
 
 ## これから足すもの（予定）
 
-Combobox（検索つきの選択）、Dialog の確認ボタン、DatePicker など
+Table、Drawer（横から出るパネル）、Tree など

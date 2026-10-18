@@ -1,0 +1,67 @@
+.kk-combobox__box {
+  position: relative;
+}
+
+.kk-combobox__input {
+  width: 100%;
+  padding-right: 40px;
+}
+
+/* 右の ▾ */
+.kk-combobox__caret {
+  position: absolute;
+  top: 50%;
+  right: 18px;
+  width: 7px;
+  height: 7px;
+  border-right: 1.5px solid var(--color-ink);
+  border-bottom: 1.5px solid var(--color-ink);
+  rotate: 45deg;
+  translate: 0 -75%;
+  pointer-events: none;
+}
+
+.kk-combobox__list {
+  position: absolute;
+  top: calc(100% + var(--space-1));
+  right: 0;
+  left: 0;
+  z-index: 10;
+  max-height: 240px;
+  margin: 0;
+  padding: var(--space-1) 0;
+  border: 1px solid var(--color-line);
+  background: var(--color-white);
+  box-shadow: var(--shadow-lift);
+  list-style: none;
+  overflow-y: auto;
+}
+
+.kk-combobox__option,
+.kk-combobox__empty {
+  padding: 10px var(--space-3);
+  font-size: var(--font-size-md);
+}
+
+.kk-combobox__option {
+  cursor: pointer;
+}
+
+/* いま ↑↓ で選んでいる候補（マウスを乗せたものも同じ見た目にする） */
+.kk-combobox__option--active {
+  background: var(--color-neutral-bg);
+  box-shadow: inset 3px 0 0 var(--color-ink);
+}
+
+.kk-combobox__option[aria-selected='true'] {
+  font-weight: 700;
+}
+
+.kk-combobox__option[aria-disabled='true'] {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.kk-combobox__empty {
+  color: var(--color-gray-text);
+}

@@ -32,8 +32,9 @@ export function Modal({ open, onClose, title, children }: ModalProps) {
       ref={ref}
       className="kk-modal"
       aria-labelledby={titleId}
-      // Esc で閉じたときも、親の open を false にそろえる
-      onClose={onClose}
+      // Esc で閉じたときも、親の open を false にそろえる。
+      // 親が open を false にして閉じたとき（プログラムで閉じたとき）は、「閉じられた」と知らせ直さない（open が true のときだけ知らせる）
+      onClose={() => { if (open) onClose() }}
       // 暗幕（dialog 自身の外側）を押したら閉じる。中身を押したときは閉じない
       onClick={(e) => { if (e.target === e.currentTarget) onClose() }}
     >

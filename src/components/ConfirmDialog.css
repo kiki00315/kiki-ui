@@ -1,0 +1,16 @@
+.kk-confirm__message {
+  margin: 0 0 var(--space-4);
+}
+
+.kk-confirm__actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: var(--space-2);
+}
+
+/* 取り消せない操作の「実行する」ボタンは、赤で目立たせる */
+.kk-btn.kk-confirm__danger {
+  border-color: var(--color-error);
+  background: var(--color-error);
+}
