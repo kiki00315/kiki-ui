@@ -43,6 +43,9 @@ KIKI ポートフォリオのデザインを「デザイントークン」と「
 | `src/components/Table.tsx` | 本物の `<table>`（caption・`th scope`）。見出しを押すと並べ替え（`aria-sort` と読み上げ）。横にはみ出すときは枠の中だけスクロール |
 | `src/components/Drawer.tsx` | 横から出る、高さいっぱいのパネル。Modal と同じ標準の `<dialog>`。動きを減らす設定では、滑り込ませない |
 | `src/components/Tree.tsx` | WAI-ARIA のツリービュー。↑↓ ←→ Home End Enter で動く |
+| `src/components/Stepper.tsx` | 手順の「いまここ」を見せる `<ol>`。`aria-current="step"` + 状態の読み上げ文字。せまい画面では縦に並ぶ |
+| `src/components/TagInput.tsx` | Enter・`,`・`、` でタグにする。**日本語の変換中の Enter ではタグにしない**。Backspace で最後を消す。追加・削除を読み上げる |
+| `src/components/Popover.tsx` | ボタンの近くに出る小さなパネル。開くとフォーカスが移り、Esc でボタンに戻る。外を押す・Tab で出ると閉じる |
 | `src/components/Badge.tsx` | `variant`: neutral / success / warning / error。色と文字の組み合わせは 4.5:1 以上 |
 | `src/components/Tooltip.tsx` | マウスを乗せる・フォーカスで出る、Esc で消せる。`aria-describedby` で読み上げにも対応 |
 | `src/components/Modal.tsx` | HTML 標準の `<dialog>` を使う。フォーカスの閉じ込め・Esc で閉じる・閉じたあとフォーカスを戻す、をブラウザに任せる |
@@ -65,4 +68,4 @@ npm run build-storybook  # カタログを storybook-static/ に書き出す（m
 
 ## これから足すもの（予定）
 
-Stepper、Tag 入力、Popover など
+Tooltip の自動配置、Calendar、Toast の積み上げ上限 など
