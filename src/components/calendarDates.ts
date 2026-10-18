@@ -27,9 +27,17 @@ export function addMonths(iso: string, n: number): string {
   return toISO(new Date(first.getFullYear(), first.getMonth(), Math.min(d.getDate(), lastDay)))
 }
 
-/** その月の、日にちの並び。日曜はじまり。月のはじめ・おわりの空きは null */
-export function monthWeeks(year: number, month: number): (number | null)[][] {
-  const offset = new Date(year, month, 1).getDay()
+/** 週のはじまり。0 = 日曜、1 = 月曜 */
+export type WeekStart = 0 | 1
+
+/** その日が、週の何番目か（0 から。はじまりの曜日が 0） */
+export function weekdayIndex(iso: string, weekStart: WeekStart): number {
+  return (fromISO(iso).getDay() - weekStart + 7) % 7
+}
+
+/** その月の、日にちの並び。週のはじまりに合わせる。月のはじめ・おわりの空きは null */
+export function monthWeeks(year: number, month: number, weekStart: WeekStart = 0): (number | null)[][] {
+  const offset = (new Date(year, month, 1).getDay() - weekStart + 7) % 7
   const days = new Date(year, month + 1, 0).getDate()
   const cells: (number | null)[] = [...Array(offset).fill(null), ...Array.from({ length: days }, (_, i) => i + 1)]
   while (cells.length % 7 !== 0) cells.push(null)
@@ -45,3 +53,8 @@ export const WEEKDAYS = [
   { short: '金', long: '金曜日' },
   { short: '土', long: '土曜日' },
 ]
+
+/** 見出しに並べる曜日（週のはじまりから順に） */
+export function weekdayHeaders(weekStart: WeekStart) {
+  return [...WEEKDAYS.slice(weekStart), ...WEEKDAYS.slice(0, weekStart)]
+}

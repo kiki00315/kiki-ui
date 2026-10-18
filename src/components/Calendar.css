@@ -86,9 +86,17 @@
 }
 
 /* 選ばれた日：塗りつぶす */
-.kk-calendar__cell[aria-selected='true'] .kk-calendar__day {
+/* 選ばれた日（1 日だけのとき・期間のはじめとおわり）：塗りつぶす */
+.kk-calendar__cell[data-edge] .kk-calendar__day {
   background: var(--color-ink);
   color: var(--color-white);
+}
+
+/* 期間：はじめからおわりまでの日の、背景を同じ色でつなぐ。まん中の日は、丸を塗らない */
+.kk-calendar__cell[data-in-range],
+.kk-calendar__cell[data-edge='start'],
+.kk-calendar__cell[data-edge='end'] {
+  background: var(--color-neutral-bg);
 }
 
 .kk-calendar__day:disabled {
