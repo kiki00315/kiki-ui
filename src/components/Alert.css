@@ -1,13 +1,3 @@
-/* 画面には出さず、スクリーンリーダーにだけ読ませる文字（Alert と Avatar で使う） */
-.kk-visually-hidden {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
-  clip-path: inset(50%);
-  white-space: nowrap;
-}
-
 .kk-alert {
   display: flex;
   align-items: flex-start;

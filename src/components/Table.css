@@ -1,0 +1,111 @@
+.kk-table {
+  font-family: var(--font-main);
+  color: var(--color-ink);
+}
+
+.kk-table__caption {
+  margin: 0 0 var(--space-2);
+  font-size: var(--font-size-sm);
+  letter-spacing: 0.08em;
+  color: var(--color-gray-text);
+}
+
+/* 横にはみ出したとき、この枠の中だけが動く */
+.kk-table__scroll {
+  overflow-x: auto;
+  border: 1px solid var(--color-line);
+  background: var(--color-white);
+}
+
+.kk-table__scroll:focus-visible {
+  outline: 2px solid var(--color-ink);
+  outline-offset: 2px;
+}
+
+.kk-table__table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--font-size-md);
+}
+
+.kk-table__th,
+.kk-table__cell {
+  padding: 12px var(--space-3);
+  border-bottom: 1px solid var(--color-line);
+  white-space: nowrap;
+}
+
+.kk-table__th {
+  background: var(--color-bg);
+  font-size: var(--font-size-sm);
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  color: var(--color-gray-text);
+}
+
+.kk-table__cell--start { text-align: left; }
+.kk-table__cell--end { text-align: right; }
+
+.kk-table__rowhead {
+  font-weight: 400;
+}
+
+.kk-table__table tbody tr:last-child > * {
+  border-bottom: 0;
+}
+
+.kk-table__table tbody tr:hover {
+  background: var(--color-neutral-bg);
+}
+
+.kk-table__empty {
+  padding: var(--space-5) var(--space-3);
+  text-align: center;
+  color: var(--color-gray-text);
+}
+
+/* 並べ替えボタン（見出しの文字 + 矢印） */
+.kk-table__sort {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  padding: 0;
+  border: 0;
+  background: transparent;
+  font: inherit;
+  letter-spacing: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+
+.kk-table__sort:hover {
+  color: var(--color-ink);
+}
+
+.kk-table__sort:focus-visible {
+  outline: 2px solid var(--color-ink);
+  outline-offset: 2px;
+}
+
+/* ▲▼を、線で描く。並べ替えていないときは、うすい上下の矢印 */
+.kk-table__arrow {
+  width: 7px;
+  height: 7px;
+  border-top: 1.5px solid currentColor;
+  border-left: 1.5px solid currentColor;
+  opacity: 0.35;
+  rotate: 45deg;
+  translate: 0 2px;
+}
+
+.kk-table__arrow--asc {
+  opacity: 1;
+  color: var(--color-ink);
+}
+
+.kk-table__arrow--desc {
+  opacity: 1;
+  color: var(--color-ink);
+  rotate: 225deg;
+  translate: 0 -2px;
+}
