@@ -1,0 +1,48 @@
+# Storybook を GitHub Pages に公開する。
+#   ・main に反映されたとき：ビルドして、公開する
+#   ・プルリクエスト：ビルドだけ試す（公開はしない）。ビルドが通るか確かめるため
+name: Storybook を公開
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+# 公開に必要な権限だけを渡す
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# 同時に何回も公開しないよう、古い実行は止める
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run build-storybook
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: storybook-static
+
+  deploy:
+    # main のときだけ公開する
+    if: github.ref == 'refs/heads/main'
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

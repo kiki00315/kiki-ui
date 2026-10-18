@@ -2,6 +2,8 @@
 
 KIKI ポートフォリオのデザインを「デザイントークン」と「UI コンポーネント」にした、React + TypeScript のデザインシステムです。Storybook でカタログにしています。
 
+- カタログ（Storybook）：https://kiki00315.github.io/kiki-ui/
+
 ## 考え方
 
 - 色・文字・余白は `src/tokens.css` の CSS 変数だけで決めます（値は、ポートフォリオの `css/style.css` から写したものです）
@@ -32,7 +34,7 @@ npm install
 npm run storybook        # http://localhost:6006 でカタログを見る
 npm run build            # 型のチェックとビルド
 npx vitest run           # Storybook の操作テスト（Chromium で動かす）
-npm run build-storybook  # カタログを storybook-static/ に書き出す
+npm run build-storybook  # カタログを storybook-static/ に書き出す（main に反映すると、GitHub Actions が自動で公開する）
 ```
 
 ## フォントについて
