@@ -40,6 +40,9 @@ KIKI ポートフォリオのデザインを「デザイントークン」と「
 | `src/components/Combobox.tsx` | WAI-ARIA のコンボボックス。文字で候補を絞る、↑↓ で選ぶ（フォーカスは入力欄のまま）、Enter で決める、Esc で閉じて元の文字に戻す |
 | `src/components/ConfirmDialog.tsx` | Modal の上の「実行しますか？」。取り消せない操作（`danger`）では、最初のフォーカスが「キャンセル」に行く |
 | `src/components/DatePicker.tsx` | 標準の `<input type="date">` を土台にする（自作のカレンダーは作らない）。`min` / `max` の範囲の外は、エラーを自動で出す |
+| `src/components/Table.tsx` | 本物の `<table>`（caption・`th scope`）。見出しを押すと並べ替え（`aria-sort` と読み上げ）。横にはみ出すときは枠の中だけスクロール |
+| `src/components/Drawer.tsx` | 横から出る、高さいっぱいのパネル。Modal と同じ標準の `<dialog>`。動きを減らす設定では、滑り込ませない |
+| `src/components/Tree.tsx` | WAI-ARIA のツリービュー。↑↓ ←→ Home End Enter で動く |
 | `src/components/Badge.tsx` | `variant`: neutral / success / warning / error。色と文字の組み合わせは 4.5:1 以上 |
 | `src/components/Tooltip.tsx` | マウスを乗せる・フォーカスで出る、Esc で消せる。`aria-describedby` で読み上げにも対応 |
 | `src/components/Modal.tsx` | HTML 標準の `<dialog>` を使う。フォーカスの閉じ込め・Esc で閉じる・閉じたあとフォーカスを戻す、をブラウザに任せる |
@@ -62,4 +65,4 @@ npm run build-storybook  # カタログを storybook-static/ に書き出す（m
 
 ## これから足すもの（予定）
 
-Table、Drawer（横から出るパネル）、Tree など
+Stepper、Tag 入力、Popover など

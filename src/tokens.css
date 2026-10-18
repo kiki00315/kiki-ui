@@ -42,3 +42,16 @@
   --shadow-lift: 0 12px 32px rgba(0, 0, 0, 0.08);
   --transition: 0.2s;
 }
+
+/* ==========================================================
+   共通の小さな部品（どのコンポーネントからも使う）
+   ========================================================== */
+/* 画面には出さず、スクリーンリーダーにだけ読ませる文字（Alert・Combobox・Table などで使う） */
+.kk-visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}

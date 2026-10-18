@@ -1,0 +1,84 @@
+.kk-drawer {
+  /* dialog は、もともと画面の真ん中に小さく出る。端にくっつけて、高さをいっぱいにする */
+  width: min(420px, 100vw);
+  max-width: none;
+  height: 100dvh;
+  max-height: none;
+  padding: 0;
+  border: 0;
+  background: var(--color-white);
+  font-family: var(--font-main);
+  color: var(--color-ink);
+  box-shadow: var(--shadow-lift);
+}
+
+.kk-drawer--right { margin: 0 0 0 auto; }
+.kk-drawer--left { margin: 0 auto 0 0; }
+
+.kk-drawer::backdrop {
+  background: var(--color-overlay);
+}
+
+/* 開くとき、端から滑り込む */
+.kk-drawer[open].kk-drawer--right { animation: kk-drawer-in-right 0.25s ease-out; }
+.kk-drawer[open].kk-drawer--left { animation: kk-drawer-in-left 0.25s ease-out; }
+
+@keyframes kk-drawer-in-right {
+  from { translate: 100% 0; }
+}
+
+@keyframes kk-drawer-in-left {
+  from { translate: -100% 0; }
+}
+
+/* 動きを減らす設定の人には、滑り込ませずに、すぐ出す */
+@media (prefers-reduced-motion: reduce) {
+  .kk-drawer[open] { animation: none; }
+}
+
+.kk-drawer__panel {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.kk-drawer__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding: var(--space-4) var(--space-4) var(--space-3) var(--space-5);
+  border-bottom: 1px solid var(--color-line);
+}
+
+.kk-drawer__title {
+  margin: 0;
+  font-size: var(--font-size-lg);
+  font-weight: 400;
+  color: var(--color-title);
+}
+
+.kk-drawer__close {
+  flex: none;
+  width: 44px;
+  height: 44px;
+  border: 0;
+  background: transparent;
+  font-size: 24px;
+  color: var(--color-gray-text);
+  cursor: pointer;
+}
+
+.kk-drawer__close:focus-visible {
+  outline: 2px solid var(--color-ink);
+  outline-offset: -4px;
+}
+
+/* 中身が長いときは、ここだけがスクロールする */
+.kk-drawer__body {
+  flex: 1;
+  padding: var(--space-4) var(--space-5);
+  font-size: var(--font-size-md);
+  line-height: 1.8;
+  overflow-y: auto;
+}

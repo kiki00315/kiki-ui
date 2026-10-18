@@ -1,0 +1,53 @@
+.kk-tree,
+.kk-tree__group {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-family: var(--font-main);
+  font-size: var(--font-size-md);
+  color: var(--color-ink);
+}
+
+.kk-tree__item {
+  outline: none;
+}
+
+.kk-tree__row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 8px var(--space-2);
+  cursor: pointer;
+}
+
+.kk-tree__row:hover {
+  background: var(--color-neutral-bg);
+}
+
+/* フォーカスは、行（li の中の 1 行）に見せる */
+.kk-tree__item:focus-visible > .kk-tree__row {
+  outline: 2px solid var(--color-ink);
+  outline-offset: -2px;
+}
+
+.kk-tree__item[aria-selected='true'] > .kk-tree__row {
+  background: var(--color-neutral-bg);
+  box-shadow: inset 3px 0 0 var(--color-ink);
+}
+
+/* 左の ▸ ▾（線で描く）。子のない項目は、幅だけ確保して何も出さない */
+.kk-tree__caret {
+  flex: none;
+  width: 8px;
+  height: 8px;
+}
+
+.kk-tree__caret--closed,
+.kk-tree__caret--open {
+  border-top: 1.5px solid var(--color-gray-text);
+  border-right: 1.5px solid var(--color-gray-text);
+  transition: rotate var(--transition);
+}
+
+.kk-tree__caret--closed { rotate: 45deg; }
+.kk-tree__caret--open { rotate: 135deg; }
