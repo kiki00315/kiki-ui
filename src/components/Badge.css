@@ -1,0 +1,30 @@
+.kk-badge {
+  display: inline-block;
+  padding: var(--space-1) 10px;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-main);
+  font-size: var(--font-size-sm);
+  letter-spacing: 0.08em;
+  line-height: 1.4;
+  white-space: nowrap;
+}
+
+.kk-badge--neutral {
+  background: var(--color-neutral-bg);
+  color: var(--color-ink);
+}
+
+.kk-badge--success {
+  background: var(--color-success-bg);
+  color: var(--color-success-text);
+}
+
+.kk-badge--warning {
+  background: var(--color-warning-bg);
+  color: var(--color-warning-text);
+}
+
+.kk-badge--error {
+  background: var(--color-error-bg);
+  color: var(--color-error);
+}

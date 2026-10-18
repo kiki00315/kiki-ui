@@ -21,9 +21,11 @@ KIKI ポートフォリオのデザインを「デザイントークン」と「
 | `src/components/Button.tsx` | `variant`: primary / secondary / ghost、`size`: sm / md |
 | `src/components/Card.tsx` | Works ページの作品カードと同じ形（絵・種類・名前・「見る」） |
 | `src/components/TextField.tsx` | label・ヒント・エラーを入力欄に結びつける（`aria-describedby` / `aria-invalid`） |
+| `src/components/Badge.tsx` | `variant`: neutral / success / warning / error。色と文字の組み合わせは 4.5:1 以上 |
+| `src/components/Tooltip.tsx` | マウスを乗せる・フォーカスで出る、Esc で消せる。`aria-describedby` で読み上げにも対応 |
 | `src/components/Modal.tsx` | HTML 標準の `<dialog>` を使う。フォーカスの閉じ込め・Esc で閉じる・閉じたあとフォーカスを戻す、をブラウザに任せる |
 | `src/tokens.stories.tsx` `spacing.stories.tsx` `typography.stories.tsx` `radius.stories.tsx` `shadow.stories.tsx` | 色・余白・文字サイズ・角丸・影のトークン一覧（値は CSS 変数から読むので、`tokens.css` を変えると自動で変わる） |
-| `src/components/*.stories.tsx` | Storybook の見本。TextField と Modal には操作のテストも入れている |
+| `src/components/*.stories.tsx` | Storybook の見本。TextField・Modal・Tooltip には操作のテストも入れている |
 
 ## 動かす
 
@@ -41,4 +43,4 @@ npm run build-storybook  # カタログを storybook-static/ に書き出す
 
 ## これから足すもの（予定）
 
-Badge、Tooltip
+Select、Toast、Tabs など
