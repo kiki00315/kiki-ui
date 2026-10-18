@@ -1,0 +1,50 @@
+.kk-popover {
+  position: relative;
+  display: inline-block;
+  /* 横並び（flex）の中でも、縦に引きのばされない（引きのばされると、パネルがボタンから離れてしまう） */
+  align-self: flex-start;
+  font-family: var(--font-main);
+}
+
+.kk-popover__trigger {
+  padding: 12px var(--space-4);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-pill);
+  background: var(--color-white);
+  font: inherit;
+  font-size: var(--font-size-md);
+  color: var(--color-ink);
+  cursor: pointer;
+}
+
+.kk-popover__trigger[aria-expanded='true'] {
+  border-color: var(--color-ink);
+}
+
+.kk-popover__trigger:focus-visible {
+  outline: 2px solid var(--color-ink);
+  outline-offset: 3px;
+}
+
+.kk-popover__panel {
+  position: absolute;
+  z-index: 10;
+  width: max-content;
+  max-width: min(320px, calc(100vw - 32px));
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--color-line);
+  background: var(--color-white);
+  box-shadow: var(--shadow-lift);
+  font-size: var(--font-size-md);
+  line-height: 1.7;
+  color: var(--color-ink);
+}
+
+.kk-popover__panel:focus-visible {
+  outline: 2px solid var(--color-ink);
+  outline-offset: 2px;
+}
+
+.kk-popover__panel--bottom-start { top: calc(100% + var(--space-2)); left: 0; }
+.kk-popover__panel--bottom-end { top: calc(100% + var(--space-2)); right: 0; }
+.kk-popover__panel--top-start { bottom: calc(100% + var(--space-2)); left: 0; }

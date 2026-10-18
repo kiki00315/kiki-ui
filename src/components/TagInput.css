@@ -1,0 +1,70 @@
+/* 枠の中に「タグ」と「入力欄」が並ぶ。枠は、TextField と同じ見た目（.kk-field__input） */
+.kk-tags__box {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-1) var(--space-2);
+  padding: 6px var(--space-2);
+  cursor: text;
+}
+
+.kk-tags__box:focus-within {
+  outline: 2px solid var(--color-ink);
+  outline-offset: 2px;
+}
+
+.kk-tags__list {
+  display: contents;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.kk-tags__tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  padding: 2px 4px 2px 10px;
+  border-radius: var(--radius-pill);
+  background: var(--color-neutral-bg);
+  font-size: var(--font-size-sm);
+  line-height: 1.5;
+}
+
+.kk-tags__remove {
+  width: 24px;
+  height: 24px;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  font-size: 16px;
+  line-height: 1;
+  color: var(--color-gray-text);
+  cursor: pointer;
+}
+
+.kk-tags__remove:hover:not(:disabled) {
+  background: var(--color-line);
+  color: var(--color-ink);
+}
+
+.kk-tags__remove:focus-visible {
+  outline: 2px solid var(--color-ink);
+  outline-offset: 1px;
+}
+
+/* 打つ欄そのもの。枠は、まわりの箱が持つので、ここでは出さない */
+.kk-tags__input {
+  flex: 1;
+  min-width: 120px;
+  padding: 6px 4px;
+  border: 0;
+  background: transparent;
+  font: inherit;
+  font-size: var(--font-size-md);
+  color: inherit;
+}
+
+.kk-tags__input:focus {
+  outline: none;
+}

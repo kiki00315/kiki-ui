@@ -1,0 +1,116 @@
+.kk-stepper {
+  display: flex;
+  gap: var(--space-4);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-family: var(--font-main);
+  color: var(--color-ink);
+}
+
+.kk-stepper__step {
+  position: relative;
+  /* 丸い印を上、文字を下に置く（線が、文字の上を通らないように） */
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-2);
+}
+
+/* ステップどうしをつなぐ線（最後以外）。丸い印の高さを、となりの丸い印まで */
+.kk-stepper__step:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  top: 15px;
+  left: calc(32px + var(--space-2));
+  right: calc(-1 * var(--space-4) + var(--space-2));
+  height: 2px;
+  background: var(--color-line);
+}
+
+.kk-stepper__step--complete:not(:last-child)::after {
+  background: var(--color-ink);
+}
+
+.kk-stepper__marker {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border: 2px solid var(--color-gray-text);
+  border-radius: 50%;
+  background: var(--color-white);
+  font-size: var(--font-size-sm);
+  color: var(--color-gray-text);
+}
+
+.kk-stepper__step--current .kk-stepper__marker {
+  border-color: var(--color-ink);
+  background: var(--color-ink);
+  color: var(--color-white);
+}
+
+/* 完了：塗りつぶして、白いチェックの印 */
+.kk-stepper__step--complete .kk-stepper__marker {
+  border-color: var(--color-ink);
+  background: var(--color-ink);
+}
+
+.kk-stepper__step--complete .kk-stepper__marker::after {
+  content: '';
+  width: 5px;
+  height: 10px;
+  border: solid var(--color-white);
+  border-width: 0 2px 2px 0;
+  rotate: 45deg;
+  translate: 0 -1px;
+}
+
+.kk-stepper__text {
+  display: grid;
+  gap: 2px;
+}
+
+.kk-stepper__label {
+  font-size: var(--font-size-md);
+}
+
+.kk-stepper__step--upcoming .kk-stepper__label {
+  color: var(--color-gray-text);
+}
+
+.kk-stepper__desc {
+  font-size: var(--font-size-sm);
+  color: var(--color-gray-text);
+}
+
+/* せまい画面では、縦に並べる（横には入りきらないため） */
+@media (max-width: 560px) {
+  .kk-stepper {
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  /* 縦に並べるときは、丸い印の右に文字を置く */
+  .kk-stepper__step {
+    flex-direction: row;
+    gap: var(--space-2);
+  }
+
+  .kk-stepper__text {
+    padding-top: 5px;
+  }
+
+  .kk-stepper__step:not(:last-child)::after {
+    top: 36px;
+    bottom: calc(-1 * var(--space-4) + 4px);
+    left: 15px;
+    right: auto;
+    width: 2px;
+    height: auto;
+  }
+}
