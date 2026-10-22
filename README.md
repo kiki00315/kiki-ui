@@ -46,7 +46,8 @@ KIKI ポートフォリオのデザインを「デザイントークン」と「
 | `src/components/Stepper.tsx` | 手順の「いまここ」を見せる `<ol>`。`aria-current="step"` + 状態の読み上げ文字。せまい画面では縦に並ぶ |
 | `src/components/TagInput.tsx` | Enter・`,`・`、` でタグにする。**日本語の変換中の Enter ではタグにしない**。Backspace で最後を消す。追加・削除を読み上げる |
 | `src/components/Popover.tsx` | ボタンの近くに出る小さなパネル。開くとフォーカスが移り、Esc でボタンに戻る。外を押す・Tab で出ると閉じる |
-| `src/components/Calendar.tsx` | WAI-ARIA の日付の表（grid）。← → ↑ ↓ Home End・PageUp / PageDown（Shift で年）・Enter で選ぶ。`min` / `max`、今日の目印 |
+| `src/components/Calendar.tsx` | WAI-ARIA の日付の表（grid）。← → ↑ ↓ Home End・PageUp / PageDown（Shift で年）・Enter で選ぶ。`min` / `max`、今日の目印、`weekStart`（日曜 / 月曜はじまり） |
+| `src/components/RangeCalendar.tsx` | 開始日と終了日を 2 回押して選ぶ期間のカレンダー。そのあいだの全部の日が `aria-selected`。選んだ結果を読み上げる。開始日より前を押すと、そちらが新しい開始日 |
 | `src/components/DateField.tsx` | 打っても選んでもよい日付の欄。`2026/10/20`・全角の数字・「年月日」・区切りなしを読み、右のボタンで Calendar を開く。範囲の外・ない日付（2/30）はエラー |
 | `src/components/Badge.tsx` | `variant`: neutral / success / warning / error。色と文字の組み合わせは 4.5:1 以上 |
 | `src/components/Tooltip.tsx` | マウスを乗せる・フォーカスで出る、Esc で消せる。`aria-describedby` で読み上げにも対応。画面のはしでは、反対側に出す・横にずらす |
@@ -70,4 +71,4 @@ npm run build-storybook  # カタログを storybook-static/ に書き出す（m
 
 ## これから足すもの（予定）
 
-期間（開始〜終了）の選択、Calendar の週のはじまりの設定、DateField の時刻つき版 など
+DateField の時刻つき版、期間の入力欄（RangeCalendar + 開始・終了の入力欄）、期間の中のプリセット（今週・今月など） など

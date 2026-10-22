@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
 import { expect, fn, userEvent, within } from 'storybook/test'
 import { Calendar } from './Calendar'
-import { addMonths, monthWeeks } from './calendarDates'
+import { addMonths, monthWeeks, weekdayHeaders } from './calendarDates'
 
 const onChange = fn()
 
@@ -91,5 +91,35 @@ export const DateRules: Story = {
     await expect(weeks).toHaveLength(5)
     await expect(weeks[0]).toEqual([null, null, null, null, 1, 2, 3])
     await expect(weeks[4].slice(0, 7)).toEqual([25, 26, 27, 28, 29, 30, 31])
+  },
+}
+
+export const MondayStart: Story = {
+  // 週のはじまりを月曜にする：曜日の並びが「月火水木金土日」になる／Home・End が、月曜・日曜へ行く
+  args: { weekStart: 1 },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement)
+    await expect(canvas.getAllByRole('columnheader').map((h) => h.textContent)).toEqual(['月', '火', '水', '木', '金', '土', '日'])
+    // 2026 年 10 月 1 日は木曜日 → 月曜はじまりでは、1 週目の 4 番目（前に 3 つの空き）
+    const first = canvas.getByRole('button', { name: '2026年10月1日（木）' }).closest('tr')!
+    await expect(within(first as HTMLElement).getAllByRole('gridcell')).toHaveLength(4)
+    canvas.getByRole('button', { name: '2026年10月21日（水）' }).focus()
+    await userEvent.keyboard('{Home}')
+    await expect(canvas.getByRole('button', { name: '2026年10月19日（月）' })).toHaveFocus()
+    await userEvent.keyboard('{End}')
+    await expect(canvas.getByRole('button', { name: '2026年10月25日（日）' })).toHaveFocus()
+  },
+}
+
+export const WeekRules: Story = {
+  // 月曜はじまりの並びの計算（画面なしで確かめる）
+  play: async () => {
+    await expect(weekdayHeaders(1).map((w) => w.short)).toEqual(['月', '火', '水', '木', '金', '土', '日'])
+    // 2026 年 10 月は、1 日が木曜：日曜はじまりなら 4 つ、月曜はじまりなら 3 つの空きから始まる
+    await expect(monthWeeks(2026, 9, 0)[0]).toEqual([null, null, null, null, 1, 2, 3])
+    await expect(monthWeeks(2026, 9, 1)[0]).toEqual([null, null, null, 1, 2, 3, 4])
+    // 月曜はじまりでは、10 月 31 日（土）が最後の週の 6 番目
+    const last = monthWeeks(2026, 9, 1).at(-1)!
+    await expect(last).toEqual([26, 27, 28, 29, 30, 31, null])
   },
 }
